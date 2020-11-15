@@ -16,7 +16,9 @@ export interface CakeMethodDef<
 
 const HTTPMethods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'] as const;
 
-export const service = <T extends Record<string, CakeMethodDef<any, any>>>(
+export const createService = <
+  T extends Record<string, CakeMethodDef<any, any>>
+>(
   serviceDef: T
 ): T => {
   assert(

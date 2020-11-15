@@ -1,11 +1,11 @@
 import { Chance } from 'chance';
 import { expect, throwing, throwingWith } from 'twobees';
-import { service } from '../../src';
+import { createService } from '../../src';
 
 describe('cake service schema builders', () => {
   it('should accept a well defined service', () => {
-    const createService = () =>
-      service({
+    const runCreateService = () =>
+      createService({
         methodA: {
           path: '/path/to/method',
           method: 'GET',
@@ -32,21 +32,21 @@ describe('cake service schema builders', () => {
 
     // eslint-disable-next-line
     //@ts-ignore - figure out why this raises type errors :\
-    expect(createService).not.toBe(throwing);
+    expect(runCreateService).not.toBe(throwing);
   });
 
   it('should reject a service that was not defined using an object', () => {
     // eslint-disable-next-line
     //@ts-expect-error
-    const createService = () => service('asdfasdf');
+    const createService = () => createService('asdfasdf');
     expect(createService).toBe(
       throwingWith('service definition should be an object')
     );
   });
 
   it('should reject a service that has a method that was not defined using an object', () => {
-    const createService = () =>
-      service({
+    const runCreateService = () =>
+      createService({
         wellDefinedMethod: {
           path: '/path/to/method',
           method: 'GET',
@@ -64,14 +64,14 @@ describe('cake service schema builders', () => {
         invalidMethod: '',
       });
 
-    expect(createService).toBe(
+    expect(runCreateService).toBe(
       throwingWith('type for method "invalidMethod": string')
     );
   });
 
   it('should reject a service that has a method without a proper path defined', () => {
-    const createService = () =>
-      service({
+    const runCreateService = () =>
+      createService({
         wellDefinedMethod: {
           path: '/path/to/method',
           method: 'GET',
@@ -99,14 +99,14 @@ describe('cake service schema builders', () => {
         },
       });
 
-    expect(createService).toBe(
+    expect(runCreateService).toBe(
       throwingWith('invalid path value for method "invalidMethod"')
     );
   });
 
   it('should reject a service that has a method that does not make use of a valid http method', () => {
-    const createService = () =>
-      service({
+    const runCreateService = () =>
+      createService({
         wellDefinedMethod: {
           path: '/path/to/method',
           method: 'GET',
@@ -135,14 +135,14 @@ describe('cake service schema builders', () => {
         },
       });
 
-    expect(createService).toBe(
+    expect(runCreateService).toBe(
       throwingWith('invalid http method value for method "invalidMethod"')
     );
   });
 
   it('should reject a service that has a method with a request that is not a function', () => {
-    const createService = () =>
-      service({
+    const runCreateService = () =>
+      createService({
         wellDefinedMethod: {
           path: '/path/to/method',
           method: 'GET',
@@ -167,12 +167,12 @@ describe('cake service schema builders', () => {
         },
       });
 
-    expect(createService).toBe(throwingWith('was not a function'));
+    expect(runCreateService).toBe(throwingWith('was not a function'));
   });
 
   it('should reject a service that has a method with a request that is not a schema builder function', () => {
-    const createService = () =>
-      service({
+    const runCreateService = () =>
+      createService({
         wellDefinedMethod: {
           path: '/path/to/method',
           method: 'GET',
@@ -195,14 +195,14 @@ describe('cake service schema builders', () => {
         },
       });
 
-    expect(createService).toBe(
+    expect(runCreateService).toBe(
       throwingWith('the returned value must be a valid zod object schema')
     );
   });
 
   it('should reject a service that has a method with a response that is not a function', () => {
-    const createService = () =>
-      service({
+    const runCreateService = () =>
+      createService({
         wellDefinedMethod: {
           path: '/path/to/method',
           method: 'GET',
@@ -227,12 +227,12 @@ describe('cake service schema builders', () => {
         },
       });
 
-    expect(createService).toBe(throwingWith('was not a function'));
+    expect(runCreateService).toBe(throwingWith('was not a function'));
   });
 
   it('should reject a service that has a method with a response that is not a schema builder function', () => {
-    const createService = () =>
-      service({
+    const runCreateService = () =>
+      createService({
         wellDefinedMethod: {
           path: '/path/to/method',
           method: 'GET',
@@ -255,7 +255,7 @@ describe('cake service schema builders', () => {
         },
       });
 
-    expect(createService).toBe(
+    expect(runCreateService).toBe(
       throwingWith('the returned value must be a valid zod object schema')
     );
   });
