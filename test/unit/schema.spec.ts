@@ -38,8 +38,8 @@ describe('cake service schema builders', () => {
   it('should reject a service that was not defined using an object', () => {
     // eslint-disable-next-line
     //@ts-expect-error
-    const createService = () => createService('asdfasdf');
-    expect(createService).toBe(
+    const runCreateService = () => createService('asdfasdf');
+    expect(runCreateService).toBe(
       throwingWith('service definition should be an object')
     );
   });
