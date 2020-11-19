@@ -12,9 +12,13 @@
     "jsx": "react",
     "lib": [
       "dom",
-      "esnext"
+      "esnext"    
     ],
     "skipLibCheck": true,
     "declaration": true
-  }
+  },
+  "include": [
+    "src",
+    "test"
+  ]
 }

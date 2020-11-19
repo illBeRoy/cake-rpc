@@ -1,0 +1,7 @@
+{
+  "name": "<%= packageName %>",
+  "main": "index.ts",
+  "dependencies": {
+    "cake-rpc": "*"
+  }
+}
