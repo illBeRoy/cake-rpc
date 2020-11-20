@@ -17,6 +17,9 @@
   "bin": {
     "create-cake-package": "dist/src/generator.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "express": "^4.16.0"
   },
