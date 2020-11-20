@@ -10,8 +10,8 @@
 <a href="https://github.com/illBeRoy/cake-rpc/actions?query=workflow%3A%22Node.js+CI%22" target="_blank">
   <img src="https://img.shields.io/github/workflow/status/illBeRoy/cake-rpc/Node.js%20CI/master?style=flat-square" />
 </a>
-<a href="https://npmjs.com/package/cake-rpc" target="_blank">
-  <img src="https://img.shields.io/npm/v/cake-rpc?style=flat-square" />
+<a href="https://npmjs.com/package/@cakery/cake-rpc" target="_blank">
+  <img src="https://img.shields.io/npm/v/@cakery/cake-rpc?style=flat-square" />
 </a>
 </p>
 
@@ -25,12 +25,12 @@
 ### Step 1: Define your service
 Start by installing **cake-rpc** in your project:
 ```sh
-npm install cake-rpc
+npm install @cakery/cake-rpc
 ```
 
 Now create a new file called `service.ts`, and define a service using `createService`:
 ```ts
-import { createService } from 'cake-rpc';
+import { createService } from '@cakery/cake-rpc';
 
 export const echoService = createService({
   echo: {
@@ -57,7 +57,7 @@ We declared a service (called `echoService`), with one method called: `echo`:
 
 Go to your express app and add the following:
 ```ts
-import { createRouter } from 'cake-rpc/express';
+import { createRouter } from '@cakery/cake-rpc/express';
 import { echoService } from './service';
 
 export const echoServiceRouter = createRouter(echoService, {
@@ -81,7 +81,7 @@ We then took the router and utilized it by our express app!
 ### Step 3: Use your service from the client
 Now we want to actually use our echo service. Let's go to our client's code and add the following:
 ```ts
-import { createClient } from 'cake-rpc/client';
+import { createClient } from '@cakery/cake-rpc/client';
 import { echoService } from '../service/echo';
 
 const echoClient = createClient(echoService, '/api');
@@ -114,16 +114,16 @@ yarn add cake-rpc
 ```
 
 The **cake-rpc** actually has three entrypoints:
-1. The first one is the default `cake-rpc` import, which provides you with the service factory
-2. The second one is `cake-rpc/express` - this is where you import the server-side tools into your express application
-3. The third one is `cake-rpc/client` - this is where you import the client factory from, and should be used by your client application
+1. The first one is the default `@cakery/cake-rpc` import, which provides you with the service factory
+2. The second one is `@cakery/cake-rpc/express` - this is where you import the server-side tools into your express application
+3. The third one is `@cakery/cake-rpc/client` - this is where you import the client factory from, and should be used by your client application
 
 ### Creating Service Schemas
 At its core, **cake-rpc** operates with *services*. You can think of them as interfaces that define all the api methods that you want to expose.
 
 In order to create a new service, you need to import the `createService` factory method from the main entrypoint:
 ```ts
-import { createService } from 'cake-rpc';
+import { createService } from '@cakery/cake-rpc';
 ```
 
 You can then use it to create a service schema:
@@ -175,7 +175,7 @@ As such, **cake-rpc** plugs into your `express` application as a [router](https:
 
 You can start by importing the router factory:
 ```ts
-import { createRouter } from 'cake-rpc/express';
+import { createRouter } from '@cakery/cake-rpc/express';
 ```
 
 Now, create an express router for your service:
@@ -209,7 +209,7 @@ Now that you've implemented your server, you can initialize your client.
 
 Start by importing the `createClient` factory:
 ```ts
-import { createClient } from 'cake-rpc/client';
+import { createClient } from '@cakery/cake-rpc/client';
 ```
 
 The next thing to do is to create your client:
@@ -236,7 +236,7 @@ Additionally, you can pass an Axios config to the request as well, e.g.:
 guestListClient.addGuest({ name: 'Roy', age: 28, plusOne: true }, { headers: { 'x-my-identity': 'super admin' } });
 ```
 
-ℹ️ Regarding your bundle: if you are bundling your apps using webpack or parcel, fear not! **cake-rpc** only brings the essential code for your client-side application, since you import it from `cake-rpc/client`. Nothing related to `express` will be imported.
+ℹ️ Regarding your bundle: if you are bundling your apps using webpack or parcel, fear not! **cake-rpc** only brings the essential code for your client-side application, since you import it from `@cakery/cake-rpc/client`. Nothing related to `express` will be imported.
 
 ### Making API Changes (Backwards Compatibility)
 APIs are dynamic beings - we change and we add to them all the time. Question being asked - how does **cake-rpc** handle API changes? Let's divide it into two parts: requests and responses.
@@ -295,7 +295,7 @@ That is, people want things to work fast and simple, and not have to wrap their 
 That's why I came up with **cake-rpc** - inspired by my experience with said libraries, I wanted to create a library that is as simple to plug into as an express router, and which you don't have to commit to - if you don't feel like using it anymore, just uninstall it and you're done. In short: comprehensive, but non-intrusive.
 
 ### What if I'm using Koa? Or Fastify? Or something else?
-As you can see, the `createRouter` method from express is imported from `cake-rpc/express`. In the future, and according to popular demand, adapters for `koa`, `fastify` and others might be added as well.
+As you can see, the `createRouter` method from express is imported from `@cakery/cake-rpc/express`. In the future, and according to popular demand, adapters for `koa`, `fastify` and others might be added as well.
 
 ### What if I don't want Axios?
 I went with `axios` first as it is my own requests library of choice. I do intend to implement a client base on `fetch` as well, so if you don't want to include `axios` in your bundle and prefer to use `fetch` - you will be able to pretty soon!

@@ -1,5 +1,5 @@
 {
-  "name": "cake-rpc",
+  "name": "@cakery/cake-rpc",
   "version": "1.0.3",
   "description": "🍰 fully typed rest library for your express & browser apps",
   "main": "./dist/src",
