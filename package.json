@@ -8,12 +8,14 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "clean": "rm -rf dist",
     "build": "tsc",
     "test": "jest",
-    "release": "release-it"
+    "release": "release-it",
+    "prerelease": "yarn clean && yarn build"
   },
   "bin": {
-    "create-cake-package": "dist/src/generator"
+    "create-cake-package": "dist/src/generator.js"
   },
   "peerDependencies": {
     "express": "^4.16.0"

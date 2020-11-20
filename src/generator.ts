@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import path from 'path';
 import prompts from 'prompts';
 import fs from 'fs-extra';
