@@ -1,6 +1,6 @@
 {
   "name": "@cakery/cake-rpc",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "🍰 fully typed rest library for your express & browser apps",
   "main": "./dist/src",
   "repository": "git@github.com:illberoy/cake-rpc",
