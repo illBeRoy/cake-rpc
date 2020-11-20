@@ -11,7 +11,7 @@
     "clean": "rm -rf dist",
     "build": "tsc",
     "test": "jest",
-    "release": "release-it",
+    "release": "npx release-it",
     "prerelease": "yarn clean && yarn build"
   },
   "bin": {
