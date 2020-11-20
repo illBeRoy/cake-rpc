@@ -64,6 +64,7 @@
     "globby": "^11.0.1",
     "lodash.template": "^4.5.0",
     "prompts": "^2.4.0",
+    "tslib": "^2.0.3",
     "zod": "^1.11.10"
   },
   "jest": {
